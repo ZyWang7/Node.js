@@ -8,6 +8,8 @@ const fs = require('fs');
 //                 en-coding format | get the result
 
 fs.readFile('hello.txt', 'utf8', function(err, dataStr){
+    // if failed -> err == null
+    // else dataStr = undefined
     console.log(err);
     console.log('----------');
     console.log(dataStr);
