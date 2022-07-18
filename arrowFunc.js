@@ -22,3 +22,24 @@ console.log(summerizeUser(name, age, hasHobbies));
 console.log(add(1, 2));
 console.log(addOne(1));
 console.log(addRandom());
+
+
+// objects
+const person = {
+    name: 'Victor',
+    age: 27,
+    // greet: () => {
+    //     console.log('I am ' + this.name);   // I am undefined
+    // }
+
+    // greet: function(){
+    //     console.log('I am ' + this.name);   // I am Victor
+    // }
+    
+    greet(){
+        console.log('I am ' + this.name);   // I am Victor
+    }
+}
+
+// console.log(person);
+person.greet();
