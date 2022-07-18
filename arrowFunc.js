@@ -52,5 +52,33 @@ const hobbies = ['Sports', 'Crosstalk', 1, true, {}];
 //     console.log(hobby);
 // }
 
-// console.log(hobbies.map(hobby => 'Hobby: ' + hobby));   create a new array
+// console.log(hobbies.map(hobby => 'Hobby: ' + hobby));   // create a new array
+// console.log(hobbies);
+
+hobbies.push('Programming');    // get no error when editing constant
+// array -> referencr type -> store an address pointing at the place in memory
 console.log(hobbies);
+
+const copyArray = hobbies.slice();
+console.log(copyArray);
+
+// spread operator
+// take the array/object after the operater and pull out all the elements/properties
+const copiedArray1 = [hobbies];     // nested array
+const copiedArray2 = [...hobbies];
+console.log(copiedArray1);
+console.log(copiedArray2);
+
+const copyPerson = {...person};
+console.log(copyPerson);
+
+
+// rest operator
+// const toArray = (arg1, arg2, arg3) => {
+//     return [arg1, arg2, arg3];
+// }
+const toArray = (...args) => {
+    return args;
+}
+console.log(toArray(1, 2, 3));
+console.log(toArray(1, 2, 3, 4));
