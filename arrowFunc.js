@@ -24,7 +24,7 @@ console.log(addOne(1));
 console.log(addRandom());
 
 
-// objects
+// objects ----------------------------------------------------------
 const person = {
     name: 'Victor',
     age: 27,
@@ -35,7 +35,7 @@ const person = {
     // greet: function(){
     //     console.log('I am ' + this.name);   // I am Victor
     // }
-    
+
     greet(){
         console.log('I am ' + this.name);   // I am Victor
     }
@@ -43,3 +43,14 @@ const person = {
 
 // console.log(person);
 person.greet();
+
+
+// arrays -----------------------------------------------------------
+const hobbies = ['Sports', 'Crosstalk', 1, true, {}];
+
+// for (let hobby of hobbies) {
+//     console.log(hobby);
+// }
+
+// console.log(hobbies.map(hobby => 'Hobby: ' + hobby));   create a new array
+console.log(hobbies);
