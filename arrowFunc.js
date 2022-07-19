@@ -109,9 +109,21 @@ console.log(hobby1, hobby2);        // Sports Crosstalk -> no[]
 
 
 // asynochronous code -----------------------------------------------
+const fetchData = callback => {
+    setTimeout(() => {
+        callback('Done!');
+    }, 1500);
+};
+
 setTimeout(() => {
     console.log('Timer is done!');
+    fetchData(text => {
+        console.log(text);
+    });
 }, 2000);       // callback function
+// print: Timer is done!
+//        Done!
+
 
 // print Hello first -> does not block code execution
 console.log('Hello');
