@@ -108,3 +108,11 @@ const [hobby1, hobby2] = hobbies;
 console.log(hobby1, hobby2);        // Sports Crosstalk -> no[]
 
 
+// asynochronous code -----------------------------------------------
+setTimeout(() => {
+    console.log('Timer is done!');
+}, 2000);       // callback function
+
+// print Hello first -> does not block code execution
+console.log('Hello');
+
