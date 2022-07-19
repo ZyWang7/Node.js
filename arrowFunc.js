@@ -109,6 +109,7 @@ console.log(hobby1, hobby2);        // Sports Crosstalk -> no[]
 
 
 // asynochronous code -----------------------------------------------
+/*
 const fetchData = callback => {
     setTimeout(() => {
         callback('Done!');
@@ -123,6 +124,29 @@ setTimeout(() => {
 }, 2000);       // callback function
 // print: Timer is done!
 //        Done!
+*/
+const fetchData = callback => {
+    const promise = new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve('Done!');
+        }, 1500);
+    });
+    return promise;
+};
+
+setTimeout(() => {
+    console.log('Timer is done!');
+    fetchData()     // chain of then blocks
+        // 1st promise
+        .then(text => {
+            console.log(text);
+            return fetchData();     // return another promise
+        })
+        // 2nd then block -> refering to the previous promise: 'return fetchData'
+        .then(text2 => {
+            console.log(text2);
+        });
+}, 2000);       // callback function
 
 
 // print Hello first -> does not block code execution
