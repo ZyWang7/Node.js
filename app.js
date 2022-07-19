@@ -30,8 +30,20 @@ const server = http.createServer((req, res) => {
     }
 
     if (url === '/message' && method === 'POST') {
-        // create a new file to store the user's message
-        fs.writeFileSync('message.txt', 'DUMMY');
+        // get the user's message
+        const body = [];
+        req.on('data', (chunk) => {
+            console.log(body);
+            body.push(chunk);
+        });
+        req.on('end', () => {
+            const parsedBody = Buffer.concat(body).toString();
+            // console.log(parsedBody);
+            const message = parsedBody.split('=')[1];
+            // create a new file to store the user's message
+            fs.writeFileSync('message.txt', message);
+        });
+        
         // redirecting
         // fs.writeHead(302, {});     // write meta information
         res.statusCode = 302;
