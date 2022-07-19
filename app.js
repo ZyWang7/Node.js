@@ -9,6 +9,10 @@ function rqListener(req, res) {
 http.createServer(rqListener);
 */
 
-http.createServer((req, res) => {
+
+const server = http.createServer((req, res) => {
     console.log(req);
-});
+});     // return a http.server
+
+// not immediately exit script, but keep running to listen for requests
+server.listen(3000);
