@@ -1,5 +1,6 @@
 // import file/module in node.js
 const http = require('http');
+const fs = require('fs');
 
 /*
 function rqListener(req, res) {
@@ -15,6 +16,7 @@ const server = http.createServer((req, res) => {
     // peocess.exit();
 
     const url = req.url;
+    const method = req.method;
     if (url === '/') {
         res.setHeader('Content-Type', 'text/html');
         res.write('<html>'); 
@@ -24,6 +26,16 @@ const server = http.createServer((req, res) => {
                   '<button type = "submit">Send</button>' +
                   '</form></body>');
         res.write('</html>');
+        return res.end();
+    }
+
+    if (url === '/message' && method === 'POST') {
+        // create a new file to store the user's message
+        fs.writeFileSync('message.txt', 'DUMMY');
+        // redirecting
+        // fs.writeHead(302, {});     // write meta information
+        res.statusCode = 302;
+        res.setHeader('Location', '/');
         return res.end();
     }
 
