@@ -1,5 +1,7 @@
 // import file/module in node.js
 const http = require('http');
+// custom file
+const routes = require('./routes');
 
 /*
 function rqListener(req, res) {
@@ -9,13 +11,7 @@ function rqListener(req, res) {
 http.createServer(rqListener);
 */
 
-
-const server = http.createServer((req, res) => {
-    // console.log(req.url, req.method, req.headers);
-    // peocess.exit();
-
-    
-});     // return a http.server
+const server = http.createServer(routes);
 
 // not immediately exit script, but keep running to listen for requests
 server.listen(3000);
