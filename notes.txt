@@ -1,0 +1,37 @@
+Node.js -> only use one JavaScript thread
+    -> runs non-blocking JS code and use an event-driven code for running your logic
+    -> a node program exits as soon as there is no more work to do
+    -> the createServer() event never finishes by default
+
+    -> core modules can be imported into any file to be used there
+    -> import via require('moduleName')/require('./path-to-file')
+    -> export via module.exports OR just exports for multiple exports
+
+
+the event loop:
+    run/ start by node.js that keeps the node.js process running
+    and handles all the callbacks
+    and it has a certain order in which goes through the callbacks
+
+    Step:
+    1. checks any timmer callbacks should execute -> setTimeout
+                                                  -> setInterval
+    2. Pending callbacks -> I/O-related callbacks that were deferred
+    3. Poll phase -> retrieve new I/O events and execute their callbacks
+    4. Check -> execute setImmediate() callbacks
+    5. execute all close event callbacks
+    6. peocess.exit (refs == 0) -> no remaining event handlers which are registered
+
+
+How the web works?
+    Client => Request => Server => Response => Client
+
+
+Asynchronous Code:
+    JS code -> non-blocking
+    Use callbacks and events -> order changes
+
+
+Request & Response:
+    parse request data in chunks( Stream & Buffers)
+    Avoid "double responses"
