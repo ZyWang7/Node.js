@@ -32,23 +32,33 @@ const server = http.createServer((req, res) => {
     if (url === '/message' && method === 'POST') {
         // get the user's message
         const body = [];
+        // listen to certain events
         req.on('data', (chunk) => {
-            console.log(body);
+            console.log(chunk);
             body.push(chunk);
         });
-        req.on('end', () => {
+        return req.on('end', () => {
             const parsedBody = Buffer.concat(body).toString();
             // console.log(parsedBody);
             const message = parsedBody.split('=')[1];
             // create a new file to store the user's message
-            fs.writeFileSync('message.txt', message);
+            // writeFileSync -> block execution until the file is created
+            // fs.writeFileSync('message.txt', message);
+            fs.writeFile('message.txt', message, err => {
+                res.statusCode = 302;
+                res.setHeader('Location', '/');
+                return res.end();
+            });
         });
-        
+        /*  
         // redirecting
         // fs.writeHead(302, {});     // write meta information
         res.statusCode = 302;
         res.setHeader('Location', '/');
         return res.end();
+        // send response != event listener were dead
+        // -> will execute even the response is already gone
+        */
     }
 
     res.setHeader('Content-Type', 'text/html');
