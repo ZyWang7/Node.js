@@ -58,7 +58,15 @@ const requestHandler = (req, res) => {
 
 // global object
 // module.exports = requestHandler;
-module.exports = {
-    handler: requestHandler,
-    someText: 'Some code text'
-};
+
+// module.exports = {
+//     handler: requestHandler,
+//     someText: 'Some code text'
+// };
+
+// module.exports.handler = requestHandler;
+// module.exports.someText = 'someText';       // still only one export
+
+// shortcut supported by node.js
+exports.handler = requestHandler;
+exports.someText = 'someText';       
