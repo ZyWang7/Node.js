@@ -8,10 +8,11 @@ const server = http.createServer((req,res) => {
         res.setHeader('Content-Type', 'text/html');
         res.write('<html>'); 
         res.write('<head><title>My First Assignment</title></head>');
+        res.write('<h1>Welcome to my first assignment</h1>');
         res.write('<body><form action = "/create-user" method = "POST">' +
-                '<input type = "text" name = "message">' +
-                '<button type = "submit">Create</button>' +
-                '</form></body>');
+                  '<input type = "text" name = "username">' +
+                  '<button type = "submit">Create</button>' +
+                  '</form></body>');
         res.write('</html>');
         return res.end();
     }
@@ -22,7 +23,7 @@ const server = http.createServer((req,res) => {
             if (err) {
                 return console.error(err);
             }
-            console.log(data.toString());
+            // console.log(data.toString());
 
             username = data.toString();
             splitdata = username.split('\n');
@@ -57,7 +58,7 @@ const server = http.createServer((req,res) => {
 
             fs.appendFile('username.txt', ('\n' + message), err =>{
                 if (err) throw err;
-                console.log('Saved!');
+                // console.log('Saved!');
             });
 
             // res.setHeader('Location', '/');
