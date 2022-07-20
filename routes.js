@@ -57,4 +57,8 @@ const requestHandler = (req, res) => {
 };
 
 // global object
-module.exports = requestHandler;
+// module.exports = requestHandler;
+module.exports = {
+    handler: requestHandler,
+    someText: 'Some code text'
+};

@@ -11,7 +11,9 @@ function rqListener(req, res) {
 http.createServer(rqListener);
 */
 
-const server = http.createServer(routes);
+// const server = http.createServer(routes);
+const server = http.createServer(routes.handler);
+console.log(routes.someText);
 
 // not immediately exit script, but keep running to listen for requests
 server.listen(3000);
