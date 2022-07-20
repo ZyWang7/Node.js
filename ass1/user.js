@@ -1,4 +1,5 @@
 const http = require('http');
+const fs = require('fs');
 
 const server = http.createServer((req,res) => {
     const url = req.url;
@@ -16,13 +17,29 @@ const server = http.createServer((req,res) => {
     }
 
     if (url === '/user') {
-        res.setHeader('Content-Type', 'text/html');
-        res.write('<html>'); 
-        res.write('<head><title>User List</title></head>');
-        res.write('<h1>User List</h1>');
-        res.write('<body></body>');
-        res.write('</html>');
-        return res.end();
+        // read the username from the file
+        fs.readFile('username.txt', function (err, data) {
+            if (err) {
+                return console.error(err);
+            }
+            console.log(data.toString());
+
+            username = data.toString();
+            splitdata = username.split('\n');
+            var outputStr = '<ul>';
+            for (user in splitdata) {
+                outputStr = outputStr + '<li>' + splitdata[user] + '</li>';
+            }
+            outputStr += '</ul>';
+            
+            res.setHeader('Content-Type', 'text/html');
+            res.write('<html>'); 
+            res.write('<head><title>User List</title></head>');
+            res.write('<h1>User List</h1>');
+            res.write('<body>' + outputStr + '</body>');
+            res.write('</html>');
+            return res.end();
+        });
     }
 
     if (url === '/create-user' && method === 'POST') {
