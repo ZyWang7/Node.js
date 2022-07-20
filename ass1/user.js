@@ -54,6 +54,12 @@ const server = http.createServer((req,res) => {
             const parsedBody = Buffer.concat(body).toString();
             const message = parsedBody.split('=')[1];
             console.log('Welcome! ' + message);
+
+            fs.appendFile('username.txt', ('\n' + message), err =>{
+                if (err) throw err;
+                console.log('Saved!');
+            });
+
             // res.setHeader('Location', '/');
             res.setHeader('Content-Type', 'text/html');
             res.write('<html>');    // write data to response
