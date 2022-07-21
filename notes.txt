@@ -39,6 +39,7 @@ Request & Response:
 
 NPM: Node Package Manager
     -> to initialize a so-called node project/ to add some extra features
+    -> install 3rd party packages -> NPM Repository
 
     e.g.
     "scripts": {
@@ -46,3 +47,11 @@ NPM: Node Package Manager
         "start": "node app.js",                                 // -> npm start
         "start-server": "node app.js"                           // -> npm run start-server
     },
+
+
+    Packages -> development packages -> help during the development process
+             -> production dependencies -> help for the app as it's running on a server
+        e.g.
+        npm install nodemon --save          // production dependencies
+        npm install nodemon --save-dev      // development
+        npm install nodemon -g              // store globally on machine
