@@ -35,3 +35,14 @@ Asynchronous Code:
 Request & Response:
     parse request data in chunks( Stream & Buffers)
     Avoid "double responses"
+
+
+NPM: Node Package Manager
+    -> to initialize a so-called node project/ to add some extra features
+
+    e.g.
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "node app.js",                                 // -> npm start
+        "start-server": "node app.js"                           // -> npm run start-server
+    },

@@ -1,0 +1,21 @@
+{
+  "name": "node",
+  "version": "1.0.0",
+  "description": "compelete Node.js",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "start-server": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ZyWang7/Node.js.git"
+  },
+  "author": "Ziyi Wang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ZyWang7/Node.js/issues"
+  },
+  "homepage": "https://github.com/ZyWang7/Node.js#readme"
+}
