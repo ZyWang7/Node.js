@@ -44,7 +44,7 @@ requestHandler = (req, res) => {
     }
 
     if (url === '/create-user' && method === 'POST') {
-        const body = [];
+        const body = [];        // array of buffer chunks
         req.on('data', (chunk) => {
             // console.log(chunk);
             body.push(chunk);
@@ -65,11 +65,11 @@ requestHandler = (req, res) => {
             res.write('<head><title>Create User</title></head>');
             res.write('<body>Hello! ' + message + '</body>');
             res.write('</html>');
-            res.end();
             return res.end();
             
         });
     }
+    // send a HTML response with some "Page not found text"
 };
 
 module.exports = requestHandler;
