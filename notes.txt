@@ -55,3 +55,12 @@ NPM: Node Package Manager -- allow to manage project and its dependencies
             npm install nodemon --save          // production dependencies
             npm install nodemon --save-dev      // development dependencies
             npm install nodemon -g              // store globally on machine
+
+
+Express.js 
+-> alternative: Vanilla Node.js
+                Adonis.js
+                Koa
+                Sails.js
+
+Framework: helper function, tools & rules that help you build your application
