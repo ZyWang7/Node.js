@@ -5,6 +5,28 @@ const express = require('express');
 // create an express application -> valid request handler
 const app = express();
 
+app.use('/', (req, res, next) => {      // every route starts with a '/'
+    console.log('This always runs!');
+    next();
+});
+
+app.use('/add-product', (req, res, next) => {      // every route starts with a '/'
+    console.log('In the first middleware!');
+    res.send('<h1>The "Add Product" Page</h1>');    // sending a response
+});
+
+app.use('/', (req, res, next) => {
+    console.log('In another middleware!');
+    res.send('<h1>Hello from express</h1>');
+});
+
+// const server = http.createServer(app);
+// server.listen(3000);
+app.listen(3000);
+
+
+
+/*
 // add a middleware function
 // accepts an array of request handlers
 //                 next: a function that will be passed to 
@@ -13,12 +35,4 @@ app.use((req, res, next) => {
     console.log('In the middleware!');
     next();         // allows the request to go to the next middleware in line
 });      // () => {}: will be executed for every incoming request
-
-app.use((req, res, next) => {
-    console.log('In another middleware!');
-    res.send('<h1>Hello from express</h1>');    // sending a response
-});
-
-// const server = http.createServer(app);
-// server.listen(3000);
-app.listen(3000);
+*/

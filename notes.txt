@@ -66,6 +66,7 @@ Express.js
 -> all about Middleware: incoming request is automatically funneled throuth a bunch od functions
     -> hooking in multiple functions which the request will go throuth until send the response
     -> allow to split code in multiple blocks
+    -> from top to bottom and will not got o next middleware without next(); function
 
 !! -> does not send a defult response or anything like that
 
