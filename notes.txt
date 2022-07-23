@@ -67,4 +67,6 @@ Express.js
     -> hooking in multiple functions which the request will go throuth until send the response
     -> allow to split code in multiple blocks
 
+!! -> does not send a defult response or anything like that
+
 Framework: helper function, tools & rules that help you build your application
