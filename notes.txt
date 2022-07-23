@@ -63,4 +63,8 @@ Express.js
                 Koa
                 Sails.js
 
+-> all about Middleware: incoming request is automatically funneled throuth a bunch od functions
+    -> hooking in multiple functions which the request will go throuth until send the response
+    -> allow to split code in multiple blocks
+
 Framework: helper function, tools & rules that help you build your application
