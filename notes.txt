@@ -63,6 +63,8 @@ Express.js
                 Koa
                 Sails.js
 
+install: npm install --save express
+
 -> all about Middleware: incoming request is automatically funneled throuth a bunch od functions
     -> hooking in multiple functions which the request will go throuth until send the response
     -> allow to split code in multiple blocks
