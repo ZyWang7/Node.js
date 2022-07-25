@@ -73,3 +73,11 @@ install: npm install --save express
 !! -> does not send a defult response or anything like that
 
 Framework: helper function, tools & rules that help you build your application
+
+
+Body-Parser:
+    -> npm install --save body-parser
+    -> app.use(bodyParser.urlencoded());
+        -> register a middleware, yields such a middleware function
+        -> pass aome funtion in the end
+        -> will call next() in the end
