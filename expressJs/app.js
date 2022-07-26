@@ -5,6 +5,10 @@ const bodyParser = require('body-parser');
 
 // create an express application -> valid request handler
 const app = express();
+
+const adminRoutes = require('./routes/admin');
+const shopRoutes = require('./routes/shop');
+
 /*
 app.use('/', (req, res, next) => {      // every route starts with a '/'
     // console.log('This always runs!');
@@ -16,39 +20,10 @@ app.use('/', (req, res, next) => {      // every route starts with a '/'
 // register some middleware
 app.use(bodyParser.urlencoded({extended: false}));
 
+// order does matter!
+app.use(adminRoutes);
 
-app.use('/add-product', (req, res, next) => {
-    // console.log('In the first middleware!');
-    // res.send('<h1>The "Add Product" Page</h1>');    // sending a response
-    res.send('<form action="/product" method="post">' +
-             '<input type="text" name="title">' +
-             '<button type="submit">Add product</button></form>');
-});
-
-/*
-app.use('/product', (req, res, next) => {
-    console.log(req.body);      // { title: 'Milk' }
-    res.redirect('/');
-});     // always executed -> for both POST and GET request
-
-// only for GET request
-app.get('/product', (req, res, next) => {
-    console.log(req.body);      // { title: 'Milk' }
-    res.redirect('/');
-});
-*/
-
-// only for POST request
-app.post('/product', (req, res, next) => {
-    console.log(req.body);      // { title: 'Milk' }
-    res.redirect('/');
-});
-
-
-app.use('/', (req, res, next) => {
-    // console.log('In another middleware!');
-    res.send('<h1>Hello from express</h1>');
-});
+app.use(shopRoutes);
 
 // const server = http.createServer(app);
 // server.listen(3000);
