@@ -25,6 +25,11 @@ app.use(adminRoutes);
 
 app.use(shopRoutes);
 
+// handle 404 not found page
+app.use((req, res, next) => {
+    res.status(404).send('<h1>Page not found</h1>');
+});
+
 // const server = http.createServer(app);
 // server.listen(3000);
 app.listen(3000);
