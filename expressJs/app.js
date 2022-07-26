@@ -21,7 +21,7 @@ app.use('/', (req, res, next) => {      // every route starts with a '/'
 app.use(bodyParser.urlencoded({extended: false}));
 
 // order does matter!
-app.use(adminRoutes);
+app.use('/admin', adminRoutes);
 
 app.use(shopRoutes);
 
