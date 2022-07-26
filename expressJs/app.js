@@ -25,10 +25,25 @@ app.use('/add-product', (req, res, next) => {
              '<button type="submit">Add product</button></form>');
 });
 
+/*
 app.use('/product', (req, res, next) => {
     console.log(req.body);      // { title: 'Milk' }
     res.redirect('/');
+});     // always executed -> for both POST and GET request
+
+// only for GET request
+app.get('/product', (req, res, next) => {
+    console.log(req.body);      // { title: 'Milk' }
+    res.redirect('/');
 });
+*/
+
+// only for POST request
+app.post('/product', (req, res, next) => {
+    console.log(req.body);      // { title: 'Milk' }
+    res.redirect('/');
+});
+
 
 app.use('/', (req, res, next) => {
     // console.log('In another middleware!');
