@@ -1,6 +1,8 @@
 const express = require('express');
 const path = require('path');
 
+const rootDir = require('../util/path');
+
 // mini express app tied to the other express app
 const router = express.Router();
 
@@ -11,7 +13,9 @@ router.get('/add-product', (req, res, next) => {
     // res.send('<form action="/admin/add-product" method="post">' +
     //          '<input type="text" name="title">' +
     //          '<button type="submit">Add product</button></form>');
-    res.sendFile(path.join(__dirname, '../', 'views', 'add-product.html'));
+
+    // res.sendFile(path.join(__dirname, '../', 'views', 'add-product.html'));
+    res.sendFile(path.join(rootDir, 'views', 'add-product.html'));
 });
 
 /*
