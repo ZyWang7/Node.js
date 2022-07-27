@@ -1,0 +1,5 @@
+1. create a npm project and install Express.js
+
+2. create an Express.js app which serves 2 Html files for "/" and "/users"
+
+3. Add some static (.js or .css) files to your project that should br requres by at least one of your Html files
