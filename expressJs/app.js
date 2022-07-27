@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 // create an express application -> valid request handler
 const app = express();
 
-const adminRoutes = require('./routes/admin');
+const adminData = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
 
 /*
@@ -23,8 +23,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // order does matter!
-app.use('/admin', adminRoutes);
-
+app.use('/admin', adminData.routes);
 app.use(shopRoutes);
 
 // handle 404 not found page

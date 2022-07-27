@@ -6,6 +6,8 @@ const rootDir = require('../util/path');
 // mini express app tied to the other express app
 const router = express.Router();
 
+const products = [];
+
 // work exactly the same way as the app function
 router.get('/add-product', (req, res, next) => {
     // console.log('In the first middleware!');
@@ -33,8 +35,11 @@ router.get('/product', (req, res, next) => {
 
 // only for POST request
 router.post('/add-product', (req, res, next) => {
+    products.push({ title: req.body.title });
     console.log(req.body);      // { title: 'Milk' }
     res.redirect('/');
 });
 
-module.exports = router;
+// module.exports = router;
+exports.routes = router;
+exports.products = products;
