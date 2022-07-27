@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 
 // mini express app tied to the other express app
 const router = express.Router();
@@ -7,9 +8,10 @@ const router = express.Router();
 router.get('/add-product', (req, res, next) => {
     // console.log('In the first middleware!');
     // res.send('<h1>The "Add Product" Page</h1>');    // sending a response
-    res.send('<form action="/admin/add-product" method="post">' +
-             '<input type="text" name="title">' +
-             '<button type="submit">Add product</button></form>');
+    // res.send('<form action="/admin/add-product" method="post">' +
+    //          '<input type="text" name="title">' +
+    //          '<button type="submit">Add product</button></form>');
+    res.sendFile(path.join(__dirname, '../', 'views', 'add-product.html'));
 });
 
 /*
