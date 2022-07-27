@@ -20,6 +20,8 @@ app.use('/', (req, res, next) => {      // every route starts with a '/'
 // register some middleware
 app.use(bodyParser.urlencoded({extended: false}));
 
+app.use(express.static(path.join(__dirname, 'public')));
+
 // order does matter!
 app.use('/admin', adminRoutes);
 
