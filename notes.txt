@@ -57,7 +57,11 @@ NPM: Node Package Manager -- allow to manage project and its dependencies
             npm install nodemon -g              // store globally on machine
 
 
-Express.js 
+Express.js: a Node.js Framework
+    -> a package that adds a bunch of utility funtions and tools
+    -> and a clear set of rules on how the app should be built
+    -> highly extensible and other packages can be plugged into it
+    -> relies heavily on middleware functions, can add by calling use()
 -> alternative: Vanilla Node.js
                 Adonis.js
                 Koa
@@ -68,7 +72,9 @@ install: npm install --save express
 -> all about Middleware: incoming request is automatically funneled throuth a bunch od functions
     -> hooking in multiple functions which the request will go throuth until send the response
     -> allow to split code in multiple blocks
-    -> from top to bottom and will not got o next middleware without next(); function
+    -> from top to bottom and will not go to next middleware without next(); function
+    -> (handle a request and should call next() to forward the request to the nect function inline/send a response to the nect function)
+    !!: should always call next() unless you sending the response in which case you should never call next()
 
 !! -> does not send a defult response or anything like that
 
@@ -81,3 +87,15 @@ Body-Parser:
         -> register a middleware, yields such a middleware function
         -> pass aome funtion in the end
         -> will call next() in the end
+
+
+Routing
+    -> filter requests by path and method
+    -> filter by method, paths are matched exactly, otherwise, the first segment of a URL is matched
+    -> can use the express.Router() to split routes across files
+
+
+Serve Files
+    -> use sendFile() to users -> e.g. HTML file
+    -> if a request is directly made for a file(e.g. a .css file), 
+       you can enable static serving for such files via express.static()
