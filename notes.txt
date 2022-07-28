@@ -116,3 +116,5 @@ Templating engines:
                     -> use minimal HTML and custom template language
         Handlebars  -> <p>{{ name }}</p>
                     -> use normal HTML and custom template language
+
+    -> install: npm install --save ejs pug express-handlebars
