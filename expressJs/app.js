@@ -6,6 +6,15 @@ const bodyParser = require('body-parser');
 // create an express application -> valid request handler
 const app = express();
 
+
+// allow to set any value globally on express application
+app.set('view engine', 'pug');      // compile dynamic templates with the pig engine
+// view engine -> default engine extension to use when omitted
+//             -> for any dynamic templates we try to render, use this specific engine
+app.set('views', 'views');      // templates in the folder called views
+// views -> tell express where to find the dynamic views
+
+
 const adminData = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
 

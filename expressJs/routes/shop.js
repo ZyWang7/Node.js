@@ -1,4 +1,5 @@
 const express = require('express');
+const { readdirSync } = require('fs');
 const path = require('path');
 
 const rootDir = require('../util/path');
@@ -13,8 +14,10 @@ router.get('/', (req, res, next) => {
     // __dirname -> holds the absolute path on operating system to this project folder
     // res.sendFile(path.join(__dirname, '../', 'views', 'shop.html'));
 
-    console.log('shop: ', adminData.products);
-    res.sendFile(path.join(rootDir, 'views', 'shop.html'));
+    // console.log('shop: ', adminData.products);
+    // res.sendFile(path.join(rootDir, 'views', 'shop.html'));
+
+    res.render('shop');
 });
 
 module.exports = router;
