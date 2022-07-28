@@ -99,3 +99,20 @@ Serve Files
     -> use sendFile() to users -> e.g. HTML file
     -> if a request is directly made for a file(e.g. a .css file), 
        you can enable static serving for such files via express.static()
+
+
+Templating engines:
+    -> put dynamic contents into html pages
+    1. get a HTMLish Template -> got some blanks/placeholders
+    2.1. have Node/Express content
+    2.2. Templating Enfine
+    3. replace placeholders/Snippets with HTML Content
+    4. HTML files send back to users
+
+    -> available templating engines: 
+        EJS         -> <p><%= name %></p>
+                    -> use normal HTML and plain JavaScript n templates
+        Pug(Jade)   -> p £{name}
+                    -> use minimal HTML and custom template language
+        Handlebars  -> <p>{{ name }}</p>
+                    -> use normal HTML and custom template language
