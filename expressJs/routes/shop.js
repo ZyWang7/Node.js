@@ -17,7 +17,11 @@ router.get('/', (req, res, next) => {
     // console.log('shop: ', adminData.products);
     // res.sendFile(path.join(rootDir, 'views', 'shop.html'));
 
-    res.render('shop');
+    const products = adminData.products;
+
+    // use the default template engine and return that template
+    //                  convert object to .pug file
+    res.render('shop', {prods: products, docTitle: 'Shop'});     // look for shop.pug file
 });
 
 module.exports = router;
