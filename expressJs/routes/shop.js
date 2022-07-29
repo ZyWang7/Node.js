@@ -21,7 +21,7 @@ router.get('/', (req, res, next) => {
 
     // use the default template engine and return that template
     //                  convert object to .pug file
-    res.render('shop', {prods: products, docTitle: 'Shop', path: '/'});     // look for shop.pug file
+    res.render('shop', {prods: products, docTitle: 'Shop', path: '/', hasProducts: products.length > 0});     // look for shop.pug file
 });
 
 module.exports = router;

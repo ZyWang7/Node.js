@@ -3,16 +3,27 @@ const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
 
+const exphbs = require('express-handlebars');
+
 // create an express application -> valid request handler
 const app = express();
 
-
+/*  PUG -----------------------------------------------------------------------
 // allow to set any value globally on express application
 app.set('view engine', 'pug');      // compile dynamic templates with the pig engine
 // view engine -> default engine extension to use when omitted
 //             -> for any dynamic templates we try to render, use this specific engine
 app.set('views', 'views');      // templates in the folder called views
 // views -> tell express where to find the dynamic views
+*/
+
+
+// Handlebar ------------------------------------------------------------------
+
+// register a new templating engine -> express-handlebars is not built-in
+app.engine('hbs', exphbs.engine({ extname: '.hbs', defaultLayout: false}));     // return the initialized view engine
+app.set('view engine', 'hbs');
+app.set('views', './views');
 
 
 const adminData = require('./routes/admin');
@@ -40,7 +51,7 @@ app.use((req, res, next) => {
     // res.status(404).send('<h1>Page not found</h1>');
     // res.status(404).sendFile(path.join(__dirname, 'views', '404.html'));
 
-    res.status(404).render('404', {docTitle: 'Page Not Found'})
+    res.status(404).render('404', {docTitle: 'Page Not Found'});
 });
 
 // const server = http.createServer(app);
