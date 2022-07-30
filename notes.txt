@@ -119,3 +119,18 @@ Templating engines:
                     -> use normal HTML and custom template language
 
     -> install: npm install --save ejs pug express-handlebars
+
+
+MVC: Model View Controller
+    -> Sepsration of Concerns -> different part do different things
+                              -> clearly know which part is responsible for what
+    -> Models
+        -> objects/responsible for representing the data -> work with your data(save, fetch)
+    -> Views
+        -> what the users sees
+        -> decoupled from your application code
+    -> Controllers ----> split across middleware functions
+        -> connecting your models and your views
+        -> contains the 'in-between' logic
+        |
+        -> Routes
