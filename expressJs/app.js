@@ -21,7 +21,11 @@ app.set('views', 'views');      // templates in the folder called views
 // Handlebar ------------------------------------------------------------------
 
 // register a new templating engine -> express-handlebars is not built-in
-app.engine('hbs', exphbs.engine({ extname: '.hbs', defaultLayout: false}));     // return the initialized view engine
+app.engine('hbs', exphbs.engine({ 
+    extname: 'hbs', 
+    layoutsDir: 'views/layouts/',
+    defaultLayout: 'main-layout', 
+}));     // return the initialized view engine
 app.set('view engine', 'hbs');
 app.set('views', './views');
 
