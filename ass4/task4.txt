@@ -1,0 +1,5 @@
+1. create a npm project and instal Express.js
+
+2. Add 2 routes:
+    - "/" -> Holds a <form> that allows users to input their name
+    - "/users" ->  outputs an <ul> with the user names
