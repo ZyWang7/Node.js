@@ -1,31 +1,16 @@
 const express = require('express');
 const path = require('path');
 
-const rootDir = require('../util/path');
+// const rootDir = require('../util/path');
+
+const productsController = require('../conreollers/products');
 
 // mini express app tied to the other express app
 const router = express.Router();
 
-const products = [];
-
 // work exactly the same way as the app function
-router.get('/add-product', (req, res, next) => {
-    // console.log('In the first middleware!');
-    // res.send('<h1>The "Add Product" Page</h1>');    // sending a response
-    // res.send('<form action="/admin/add-product" method="post">' +
-    //          '<input type="text" name="title">' +
-    //          '<button type="submit">Add product</button></form>');
-
-    // res.sendFile(path.join(__dirname, '../', 'views', 'add-product.html'));
-    // res.sendFile(path.join(rootDir, 'views', 'add-product.html'));
-
-    res.render('add-product', { 
-        docTitle: 'Add Products',
-        path: '/admin/add-product',
-        productCSS: true,
-        activeProd: true
-    });
-});
+// pass a reference to function
+router.get('/add-product', productsController.getAddProduct);
 
 /*
 router.use('/product', (req, res, next) => {
@@ -41,12 +26,8 @@ router.get('/product', (req, res, next) => {
 */
 
 // only for POST request
-router.post('/add-product', (req, res, next) => {
-    products.push({ title: req.body.title });
-    console.log(req.body);      // { title: 'Milk' }
-    res.redirect('/');
-});
+router.post('/add-product', productsController.postAddProduct);
 
-// module.exports = router;
-exports.routes = router;
-exports.products = products;
+module.exports = router;
+// exports.routes = router;
+// exports.products = products;
