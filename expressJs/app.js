@@ -3,8 +3,6 @@ const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
 
-const exphbs = require('express-handlebars');
-
 // create an express application -> valid request handler
 const app = express();
 
@@ -18,8 +16,9 @@ app.set('views', 'views');      // templates in the folder called views
 */
 
 
+/*
 // Handlebar ------------------------------------------------------------------
-
+const exphbs = require('express-handlebars');
 // register a new templating engine -> express-handlebars is not built-in
 app.engine('hbs', exphbs.engine({ 
     extname: 'hbs', 
@@ -27,7 +26,13 @@ app.engine('hbs', exphbs.engine({
     defaultLayout: 'main-layout', 
 }));     // return the initialized view engine
 app.set('view engine', 'hbs');
-app.set('views', './views');
+app.set('views', 'views');
+*/
+
+
+// EJS ------------------------------------------------------------------------
+app.set('view engine', 'ejs');
+app.set('views', 'views');
 
 
 const adminData = require('./routes/admin');

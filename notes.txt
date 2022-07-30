@@ -112,7 +112,8 @@ Templating engines:
     -> available templating engines: 
         EJS         -> <p><%= name %></p>
                     -> use normal HTML and plain JavaScript n templates
-        Pug(Jade)   -> p £{name}
+                    -> does not support layouts
+        Pug(Jade)   -> p #{name}
                     -> use minimal HTML and custom template language
         Handlebars  -> <p>{{ name }}</p>
                     -> use normal HTML and custom template language
