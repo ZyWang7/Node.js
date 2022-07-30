@@ -5,9 +5,9 @@ const adminData = require('./admin');
 const router = express.Router();
 
 router.get('/users', (req, res, next) => {
-    const products = adminData.products;
+    const names = adminData.names;
     res.render('users', {
-        prods: products, 
+        names: names, 
         docTitle: 'Users',
     });
 });
