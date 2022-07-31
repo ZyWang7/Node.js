@@ -4,7 +4,7 @@ var http = require("http");
 http.createServer(function(request, response) {
     response.writeHead(200, {'Content-Type': 'text/plain'});
 
-    response.send('<p style="font-size:50pt">Hello world! Wzy 大der🤡<p>');
+    response.end('<p style="font-size:50pt">Hello world! Wzy 大der🤡<p>');
 }).listen(8888);
 
 // print at terminal
