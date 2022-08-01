@@ -3,6 +3,9 @@ const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
 
+
+const errorController = require('./controllers/error');
+
 // create an express application -> valid request handler
 const app = express();
 
@@ -56,12 +59,7 @@ app.use('/admin', adminRoutes);
 app.use(shopRoutes);
 
 // handle 404 not found page
-app.use((req, res, next) => {
-    // res.status(404).send('<h1>Page not found</h1>');
-    // res.status(404).sendFile(path.join(__dirname, 'views', '404.html'));
-
-    res.status(404).render('404', {docTitle: 'Page Not Found'});
-});
+app.use(errorController.get404);
 
 // const server = http.createServer(app);
 // server.listen(3000);
