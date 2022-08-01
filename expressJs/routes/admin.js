@@ -3,7 +3,7 @@ const path = require('path');
 
 // const rootDir = require('../util/path');
 
-const productsController = require('../conreollers/products');
+const productsController = require('../controllers/product');
 
 // mini express app tied to the other express app
 const router = express.Router();
