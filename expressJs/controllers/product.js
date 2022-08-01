@@ -1,4 +1,4 @@
-const products = [];
+const Product = require('../models/product');
 
 
 exports.getAddProduct = (req, res, next) => {
@@ -21,8 +21,11 @@ exports.getAddProduct = (req, res, next) => {
 
 
 exports.postAddProduct = (req, res, next) => {
-    products.push({ title: req.body.title });
-    console.log(req.body);      // { title: 'Milk' }
+    // products.push({ title: req.body.title });
+    // console.log(req.body);      // { title: 'Milk' }
+
+    const product = new Product(req.body.title);
+    product.save();
     res.redirect('/');
 };
 
@@ -41,6 +44,9 @@ exports.getProducts = (req, res, next) => {
 
     // use the default template engine and return that template
     //                  convert object to .pug file
+
+    const products = Product.fetchAll();
+
     res.render('shop', {
         prods: products, 
         docTitle: 'Shop', 
