@@ -3,14 +3,18 @@ const path = require('path');
 
 // const rootDir = require('../util/path');
 
-const productsController = require('../controllers/product');
+const adminController = require('../controllers/admin');
 
 // mini express app tied to the other express app
 const router = express.Router();
 
 // work exactly the same way as the app function
 // pass a reference to function
-router.get('/add-product', productsController.getAddProduct);
+router.get('/add-product', adminController.getAddProduct);
+
+// /admin/product => GET
+router.get('/products', adminController.getProducts);
+
 
 /*
 router.use('/product', (req, res, next) => {
@@ -26,7 +30,7 @@ router.get('/product', (req, res, next) => {
 */
 
 // only for POST request
-router.post('/add-product', productsController.postAddProduct);
+router.post('/add-product', adminController.postAddProduct);
 
 module.exports = router;
 // exports.routes = router;
