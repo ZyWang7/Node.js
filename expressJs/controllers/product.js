@@ -11,7 +11,7 @@ exports.getAddProduct = (req, res, next) => {
     // res.sendFile(path.join(__dirname, '../', 'views', 'add-product.html'));
     // res.sendFile(path.join(rootDir, 'views', 'add-product.html'));
 
-    res.render('add-product', { 
+    res.render('admin/add-product', { 
         docTitle: 'Add Products',
         path: '/admin/add-product',
         productCSS: true,
@@ -47,7 +47,7 @@ exports.getProducts = (req, res, next) => {
 
     // const products = Product.fetchAll();
     Product.fetchAll((products) => {
-        res.render('shop', {
+        res.render('shop/product-list', {
             prods: products, 
             docTitle: 'Shop', 
             path: '/', 
