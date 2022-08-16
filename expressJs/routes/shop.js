@@ -13,6 +13,11 @@ router.get('/', shopController.getIndex);
 
 router.get('/products', shopController.getProducts);
 
+//                    will bw able to extract the info by this name
+router.get('/products/:productId', shopController.getProduct);
+// but... remember to get the more specific routes before this
+// e.g.     router.get('/products/delete');
+
 router.get('/cart', shopController.getCart);
 
 router.get('/checkout', shopController.getCheckout);
