@@ -8,9 +8,14 @@
         <% if (prods.length > 0) {%>
             <!-- <% prods.foreach %> -->
             <% for (let product of prods) { %>
-                <h2><%= product.title %></h2>
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKOwTYEkz3T3MgVc2yotUHiJMel58Nihs_mQ&usqp=CAU" alt="a book">
-                <p>a interesting book</p>
+                <article>
+                    <h2><%= product.title %></h2>
+                    <img width="20%" src="<%= product.imageUrl %>" alt="<%= product.title %>">
+                    <h3>$<%= product.price %></h3>
+                    <p><%= product.description %></p>
+                    <button>Add to Cart</button>
+                </article>
+                
             <% } %>
         <% } else { %>
             <h2>No Products Found</h2>

@@ -16,17 +16,16 @@ const getProductsFromFile = cb => {
         } else {
             // return JSON.parse(fileContent);
             cb(JSON.parse(fileContent));
-            // the above return statement -> belongs to the inner function
         }
     });
 } 
 
 module.exports = class Product {
-    constructor(title, imageUrl, description, price) {
+    constructor(title, imageUrl, price, description) {
         this.title = title;
         this.imageUrl = imageUrl;
-        this.description = description;
         this.price = price;
+        this.description = description;
     }
 
     // store the product in the array
