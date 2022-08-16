@@ -30,6 +30,7 @@ module.exports = class Product {
 
     // store the product in the array
     save() {
+        this.id = Math.random().toString();
         getProductsFromFile(products => {
             // this -> refer to the object created based on the class
             products.push(this);
