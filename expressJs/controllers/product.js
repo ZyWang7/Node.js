@@ -45,15 +45,17 @@ exports.getProducts = (req, res, next) => {
     // use the default template engine and return that template
     //                  convert object to .pug file
 
-    const products = Product.fetchAll();
+    // const products = Product.fetchAll();
+    Product.fetchAll((products) => {
+        res.render('shop', {
+            prods: products, 
+            docTitle: 'Shop', 
+            path: '/', 
+            hasProducts: products.length > 0,
+            activeShop: true,
+            productCSS: true,
+            // layout: false       // would not use the default layout?
+        });     // look for shop.pug file
+    });
 
-    res.render('shop', {
-        prods: products, 
-        docTitle: 'Shop', 
-        path: '/', 
-        hasProducts: products.length > 0,
-        activeShop: true,
-        productCSS: true,
-        // layout: false       // would not use the default layout?
-    });     // look for shop.pug file
 };

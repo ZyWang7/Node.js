@@ -31,16 +31,20 @@ module.exports = class Product {
     }
 
     // retrieve all the products
-    static fetchAll() {
+    static fetchAll(cb) {
+    // the thing calling fetchAll can pass a function is then aware of being
+    // called which holds the data I want to return
         const p = path.join(path.dirname(process.mainModule.filename),
                             'data',
                             'products.json');
         fs.readFile(p, (err, fileContent) => {
             if (err) {
-                return [];
+                // return [];
+                cb([]);
             }
-
-            return JSON.parse(fileContent);
+            // return JSON.parse(fileContent);
+            cb(JSON.parse(fileContent));
+            // the above return statement -> belongs to the inner function
         });
     }
 }
