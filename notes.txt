@@ -125,12 +125,16 @@ MVC: Model View Controller
     -> Sepsration of Concerns -> different part do different things
                               -> clearly know which part is responsible for what
     -> Models
-        -> objects/responsible for representing the data -> work with your data(save, fetch)
+        -> objects/responsible for representing the data -> manage your data(save, fetch)
+        -> contain data-related logic
     -> Views
         -> what the users sees
         -> decoupled from your application code
+        -> shouldn't contain too much logic
     -> Controllers ----> split across middleware functions
-        -> connecting your models and your views
+        -> connecting models and views
+        -> should only make sure that the 2 can communicate
         -> contains the 'in-between' logic
         |
         -> Routes
+
