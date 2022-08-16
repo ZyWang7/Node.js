@@ -41,3 +41,19 @@ button:active {
     background-color: #605198;
     color: white;
 }
+
+.btn {
+    font: inherit;
+    border: 2px solid #605198;
+    text-align: center;
+    color: #11224d;
+    background: white;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn:hover,
+.btn:active {
+    background-color: #605198;
+    color: white;
+}
