@@ -57,4 +57,15 @@ module.exports = class Product {
     // called which holds the data I want to return
         getProductsFromFile(cb);
     }
+
+    static findById(id, cb){
+        // cb -> a callback function -> execute once done finding the product
+        getProductsFromFile(products => {
+            // find on every element in the array and 
+            // will return the element for which this function we pass returns true
+            // pass the product which is currently looking at into the function
+            const product = products.find(p => p.id === id);
+            cb(product);
+        });
+    }
 }
