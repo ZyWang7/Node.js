@@ -14,7 +14,8 @@
                     <img width="20%" src="<%= product.imageUrl %>" alt="<%= product.title %>">
                     <h3>$<%= product.price %></h3>
                     <p><%= product.description %></p>
-                    <button>Add to Cart</button>
+                    
+                    <%- include('../includes/add-to-cart.ejs', {product: product}) %> 
                 </article>
                 
             <% } %>
