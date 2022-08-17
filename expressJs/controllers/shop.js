@@ -30,9 +30,13 @@ exports.getProduct = (req, res, next) => {
     // extract the dynamic params
     const prodId = req.params.productId;
     Product.findById(prodId, product => {
-        console.log(product);
+        res.render('shop/product-detail', {
+            product: product,
+            docTitle: product.title,
+            path: '/products'
+        });
     });
-    res.redirect('/');
+    
 };
 
 
