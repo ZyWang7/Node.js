@@ -32,6 +32,8 @@ router.get('/product', (req, res, next) => {
 // only for POST request
 router.post('/add-product', adminController.postAddProduct);
 
+router.get('/edit-product/:productId', adminController.getEditProduct);
+
 module.exports = router;
 // exports.routes = router;
 // exports.products = products;

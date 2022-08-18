@@ -10,11 +10,9 @@ exports.getAddProduct = (req, res, next) => {
     // res.sendFile(path.join(__dirname, '../', 'views', 'add-product.html'));
     // res.sendFile(path.join(rootDir, 'views', 'add-product.html'));
 
-    res.render('admin/add-product', { 
+    res.render('admin/edit-product', { 
         docTitle: 'Add Products',
-        path: '/admin/add-product',
-        productCSS: true,
-        activeProd: true
+        path: '/admin/add-product'
     });
 };
 
@@ -31,6 +29,20 @@ exports.postAddProduct = (req, res, next) => {
     const product = new Product(title, imageUrl, price, description);
     product.save();
     res.redirect('/');
+};
+
+
+exports.getEditProduct = (req, res, next) => {
+    // the extracted value is always a String
+    const editMode = req.query.edit;
+    if (!editMode) {
+        res.redirect('/');
+    }
+    res.render('admin/edit-product', { 
+        docTitle: 'Add Products',
+        path: '/admin/edit-product',
+        editing: editMode
+    });
 };
 
 
