@@ -65,6 +65,18 @@ module.exports = class Product {
         */
     }
 
+    static deleteById(id) {
+        getProductsFromFile(products => {
+            // const productIndex = products.findIndex(p => p.id === id);
+            const updateProd = products.filter(p => p.id !== id);
+            fs.writeFile(p, JSON.stringify(updateProd), (err) => {
+                if (!err) {
+                    
+                }
+            });
+        });
+    }
+
     // retrieve all the products
     static fetchAll(cb) {
     // the thing calling fetchAll can pass a function is then aware of being
