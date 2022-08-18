@@ -21,7 +21,8 @@ const getProductsFromFile = cb => {
 } 
 
 module.exports = class Product {
-    constructor(title, imageUrl, price, description) {
+    constructor(id, title, imageUrl, price, description) {
+        this.id = id;
         this.title = title;
         this.imageUrl = imageUrl;
         this.price = price;
@@ -30,13 +31,26 @@ module.exports = class Product {
 
     // store the product in the array
     save() {
-        this.id = Math.random().toString();
         getProductsFromFile(products => {
-            // this -> refer to the object created based on the class
-            products.push(this);
-            fs.writeFile(p, JSON.stringify(products), (err) => {
-                console.log(err);
-            });
+            if (this.id) {
+                // if now looking at the product plan on editing
+                const existingProductIndex = products.findIndex(p => p.id === this.id);
+                // create a new array and pull put all the products
+                const updatedProduct = [...products];
+                // replace the existing product with this
+                updatedProduct[existingProductIndex] = this;
+                fs.writeFile(p, JSON.stringify(updatedProduct), (err) => {
+                    console.log(err);
+                });
+            } else {
+                this.id = Math.random().toString();
+                // this -> refer to the object created based on the class
+                products.push(this);
+                fs.writeFile(p, JSON.stringify(products), (err) => {
+                    console.log(err);
+                });
+            }
+            
         });
 
         /*
