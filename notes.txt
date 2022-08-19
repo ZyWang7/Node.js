@@ -147,3 +147,48 @@ Dynamic Routing
         -> e.g. const prodId = req.params.productId;
     -> query params
         -> ?param=value&b=2 and extracted (req.query.myParam)
+
+
+Database
+-> store data in files -> slow
+Goal: store data and make it easily accessible
+    -> SQL      e.g. MySQL
+       vs
+       NoSQL    e.g. MangoDB
+
+Horizontal vs vertical Scaling
+-> Horizontal
+    -> add more servers (merge data into one database)
+
+-> Vertical
+    -> improve server capacity/hardware
+
+
+-> SQL 
+    -> strong Data Schema -> all data in table has to fit
+    -> Data Relation -> 1:1
+                        -> 1:M             -> tables are connected
+                        -> M:M
+    -> data is distributed across multiple tables
+    -> horizontal scaling is different/impossible
+    -> vertical scaling is possible
+    -> limitation for lots of read & write queries per second
+
+-> NoSQL
+    -> no data schemes -> no structure is required
+    -> no dara relations -> no/few connections
+        -> can relate documents but don't have to
+        -> and shouldn't do too much or queries become slow
+    
+    -> Collections (like table in SQL)
+    -> documents (e.g. { name: 'Max', age: 29 }
+                        { name: 'Manu' })            -> schemaless
+    |
+    -> can store multiple documents with different structure in the same collection
+    -> got no real relations
+        -> simply duplicate data, to be precise the data we need in the orders collection
+            -> data changes -> have to updata in multiple places
+
+    -> data is typically merged/nested in a few collections
+    -> horizontal and vertical scaling is possible
+    -> great perfoemance for mass read & write requests
