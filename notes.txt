@@ -138,3 +138,12 @@ MVC: Model View Controller
         |
         -> Routes
 
+
+Dynamic Routing
+    -> can pass dynamic path segmants
+        -> add a ":" to express router pass
+        -> e.g. router.get('/products/:productId', shopController.getProduct);
+    -> the name after the ":" is the name by which you can extract the data on req.params
+        -> e.g. const prodId = req.params.productId;
+    -> query params
+        -> ?param=value&b=2 and extracted (req.query.myParam)
