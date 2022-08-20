@@ -6,6 +6,8 @@ const bodyParser = require('body-parser');
 
 const errorController = require('./controllers/error');
 
+const db = require('./util/database');
+
 // create an express application -> valid request handler
 const app = express();
 
@@ -40,6 +42,15 @@ app.set('views', 'views');
 
 const adminRoutes = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
+
+// chain onto the result of the execute call
+db.execute('SELECT * FROM products')
+    .then(result => {
+        console.log(result[0], result[1]);
+    })
+    .catch(err => {
+        console.log(err);
+    });   // in case of error
 
 /*
 app.use('/', (req, res, next) => {      // every route starts with a '/'
