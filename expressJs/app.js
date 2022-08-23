@@ -43,6 +43,8 @@ app.set('views', 'views');
 const adminRoutes = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
 
+// testing code -------------------------------------------
+/*
 // chain onto the result of the execute call
 db.execute('SELECT * FROM products')
     .then(result => {
@@ -51,6 +53,9 @@ db.execute('SELECT * FROM products')
     .catch(err => {
         console.log(err);
     });   // in case of error
+// --------------------------------------------------------
+*/
+
 
 /*
 app.use('/', (req, res, next) => {      // every route starts with a '/'

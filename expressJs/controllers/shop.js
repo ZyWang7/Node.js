@@ -42,6 +42,7 @@ exports.getProduct = (req, res, next) => {
 
 
 exports.getIndex = (req, res, next) => {
+    /* get info from file ---------------------------------
     Product.fetchAll((products) => {
         res.render('shop/index', {
             prods: products, 
@@ -49,6 +50,17 @@ exports.getIndex = (req, res, next) => {
             path: '/'
         });
     });
+    ---------------------------------------------------- */
+
+    Product.fetchAll()
+        .then(([rows, fieldData]) => {
+            res.render('shop/index', {
+                prods: rows, 
+                docTitle: 'Shop', 
+                path: '/'
+            });
+        })
+        .catch( err => console.error(err) );
 };
 
 

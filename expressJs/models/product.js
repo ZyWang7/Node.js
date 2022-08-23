@@ -1,9 +1,10 @@
-// const products = [];
-
-const fs = require('fs');
-const path = require('path');
+const db = require('../util/database');
 
 const Cart = require('./cart');
+
+/* get info from file -------------------------------------
+const fs = require('fs');
+const path = require('path');
 
 const p = path.join(path.dirname(process.mainModule.filename),
                         'data',
@@ -21,6 +22,7 @@ const getProductsFromFile = cb => {
         }
     });
 } 
+-------------------------------------------------------- */
 
 module.exports = class Product {
     constructor(id, title, imageUrl, price, description) {
@@ -32,6 +34,7 @@ module.exports = class Product {
     }
 
     // store the product in the array
+    /* get info from file -------------------------------------
     save() {
         getProductsFromFile(products => {
             if (this.id) {
@@ -55,7 +58,7 @@ module.exports = class Product {
             
         });
 
-        /*
+        
         // get the existing product -- read the file at path p
         fs.readFile(p, (err, fileContent) => {
             let products = [];
@@ -64,7 +67,6 @@ module.exports = class Product {
                 products = JSON.parse(fileContent);
             }
         });
-        */
     }
 
     static deleteById(id) {
@@ -98,4 +100,22 @@ module.exports = class Product {
             cb(product);
         });
     }
+    */
+
+    save () {
+
+    }
+
+    static deleteById(id) {
+
+    }
+
+    static fetchAll() {
+        return db.execute('SELECT * FROM products');
+    }
+
+    static fetchBtId(id) {
+        db.execute('SELECT * FROM products WHERE id = ' + id);
+    }
+
 }
