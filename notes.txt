@@ -192,3 +192,26 @@ Horizontal vs vertical Scaling
     -> data is typically merged/nested in a few collections
     -> horizontal and vertical scaling is possible
     -> great perfoemance for mass read & write requests
+
+
+Sequelize -> third party package
+    -> Object-Relational Mapping Library
+        -> does all the heavy lifting(all the SQL code behind the scenes for us)
+        -> and maps it into javascript objects with convenience methods
+        -> which can call to execute behind the scenes SQL code
+        -> no need to write the SQL code on our own
+    
+    -> e.g.
+        -> original: INSERT INTO users VALUES (1, 'Victor', 25, 'password')
+        -> simply create a javascript object: 
+                const user = User.create({name: 'Victor', Age: 25, password: 'password'})
+    
+    
+    -> offers the model to work with the database
+        -> allows us to define such models -> define which data make up a model
+                                           -> which data will be saved in the database
+                                           -> e.g. User, Product
+        -> then instantiate the model   -> e.g. const user =  User.build()
+        -> then run queries on that     -> e.g. User.findAll()
+        -> could associate the model to a product model     -> e.g. User.hasMany(Product)
+    
