@@ -17,6 +17,7 @@ exports.getProducts = (req, res, next) => {
     //                  convert object to .pug file
 
     // const products = Product.fetchAll();
+    /*
     Product.fetchAll((products) => {
         res.render('shop/product-list', {
             prods: products, 
@@ -24,6 +25,17 @@ exports.getProducts = (req, res, next) => {
             path: '/products'
         });
     });
+    */
+
+    Product.fetchAll()
+        .then(([rows, fieldData]) => {
+            res.render('shop/product-list', {
+                prods: rows,
+                docTitle: 'All Products',
+                path: '/products'
+            });
+        })
+        .catch( err => console.error(err) );
 };
 
 

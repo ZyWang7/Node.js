@@ -28,8 +28,12 @@ exports.postAddProduct = (req, res, next) => {
     const description = req.body.description;
 
     const product = new Product(null, title, imageUrl, price, description);
-    product.save();
-    res.redirect('/');
+    product.save()
+        .then(() => {
+            // only redirect once the insert is completed
+            res.redirect('/');
+        })
+        .catch(err => console.log(err));
 };
 
 
