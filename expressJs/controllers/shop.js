@@ -42,6 +42,7 @@ exports.getProducts = (req, res, next) => {
 exports.getProduct = (req, res, next) => {
     // extract the dynamic params
     const prodId = req.params.productId;
+    /*
     Product.findById(prodId, product => {
         res.render('shop/product-detail', {
             product: product,
@@ -49,6 +50,17 @@ exports.getProduct = (req, res, next) => {
             path: '/products'
         });
     });
+    */
+
+    Product.fetchById(prodId)
+        .then(([product]) => {
+            res.render('shop/product-detail', {
+                product: product[0],
+                docTitle: product.title,
+                path: '/products'
+            });
+        })
+        .catch(err => console.log(err));
     
 };
 

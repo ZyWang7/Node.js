@@ -116,8 +116,8 @@ module.exports = class Product {
         return db.execute('SELECT * FROM products');
     }
 
-    static fetchBtId(id) {
-        db.execute('SELECT * FROM products WHERE id = ' + id);
+    static fetchById(id) {
+        return db.execute('SELECT * FROM products WHERE products.id = ?', [id]);
     }
 
 }
