@@ -214,4 +214,5 @@ Sequelize -> third party package
         -> then instantiate the model   -> e.g. const user =  User.build()
         -> then run queries on that     -> e.g. User.findAll()
         -> could associate the model to a product model     -> e.g. User.hasMany(Product)
-    
+
+test  
