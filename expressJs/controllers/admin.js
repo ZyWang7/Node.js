@@ -1,4 +1,5 @@
 const Product = require('../models/product');
+const User = require('../models/user');
 
 exports.getAddProduct = (req, res, next) => {
     // console.log('In the first middleware!');
@@ -27,12 +28,13 @@ exports.postAddProduct = (req, res, next) => {
     const price = req.body.price;
     const description = req.body.description;
 
-    // immediately save to database
-    Product.create({
+    // create a new associate object -> automatically create a connected model
+    req.user.createProduct({
         title: title,
         price: price,
         imageUrl: imageUrl,
-        description: description
+        description: description,
+        // userId: req.user.id
     })
     .then(result => {
         // console.log(result)

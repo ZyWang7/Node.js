@@ -80,7 +80,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // npm start never run this anonymous function
 // -> only reach this if we successfully  start server with app listen
 app.use((req, res, next) => {
-    User.findById(1)
+    User.findByPk(1)
         .then(user => {
             // user -> sequelize object with the value stored in the database
             //      -> with all utility methods sequelize added
