@@ -90,6 +90,7 @@ exports.postEditProduct = (req, res, next) => {
 
 
 exports.getProducts = (req, res, next) => {
+    /* get data using database
     Product.fetchAll((products) => {
         res.render('admin/products', {
             prods: products, 
@@ -97,6 +98,17 @@ exports.getProducts = (req, res, next) => {
             path: 'admin/products'
         });
     });
+    */
+
+    Product.findAll()
+        .then(products => {
+            res.render('admin/products', {
+                prods: products, 
+                docTitle: 'Admin Products', 
+                path: 'admin/products'
+            });
+        })
+        .catch(err => console.error(err));
 };
 
 
