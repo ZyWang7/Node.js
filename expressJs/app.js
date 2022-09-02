@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 
 const errorController = require('./controllers/error');
 
-const db = require('./util/database');
+const sequelize = require('./util/database');
 
 // create an express application -> valid request handler
 const app = express();
@@ -77,9 +77,17 @@ app.use(shopRoutes);
 // handle 404 not found page
 app.use(errorController.get404);
 
+// look at all the method you defined
+sequelize.sync()
+    .then(result => {
+        // console.log(result);
+        app.listen(3000);
+    })
+    .catch(err => console.log(err));
+
 // const server = http.createServer(app);
 // server.listen(3000);
-app.listen(3000);
+// app.listen(3000);
 
 
 
