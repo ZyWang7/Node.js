@@ -7,6 +7,8 @@ const bodyParser = require('body-parser');
 const errorController = require('./controllers/error');
 
 const sequelize = require('./util/database');
+const Product = require('./models/product');
+const User = require('./models/user');
 
 // create an express application -> valid request handler
 const app = express();
@@ -77,8 +79,20 @@ app.use(shopRoutes);
 // handle 404 not found page
 app.use(errorController.get404);
 
+
+// define the relation ----------------------------------------------
+// a user create this product?
+Product.belongsTo(User, {
+    constraints: true,
+    // if delete a user, any product related to the user would also gone
+    onDelete: 'CASCADE',
+});
+// define the inverse
+User.hasMany(Product);
+
+
 // look at all the method you defined
-sequelize.sync()
+sequelize.sync({ force: true })        // define the table and the relation
     .then(result => {
         // console.log(result);
         app.listen(3000);

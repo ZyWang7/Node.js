@@ -9,8 +9,8 @@ const User = sequelize.define('user', {
         primaryKey: true,
         allowNull: false
     },
-    name: sequelize.STRING,
-    email: sequelize.STRING
+    name: Sequelize.STRING,
+    email: Sequelize.STRING
 });
 
 module.exports = User;
