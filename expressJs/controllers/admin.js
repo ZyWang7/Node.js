@@ -59,6 +59,23 @@ exports.getEditProduct = (req, res, next) => {
         res.redirect('/');
     }
     const prodId = req.params.productId;
+
+    // using sequelize
+    Product.findByPk(prodId)
+        .then(product => {
+            if (!product) {
+                return res.redirect('/');
+            }
+            res.render('admin/edit-product', { 
+                docTitle: 'Add Products',
+                path: '/admin/edit-product',
+                editing: editMode,
+                product: product
+            });
+        })
+        .catch(err => console.log(err));
+
+    /*
     Product.findById(prodId, product => {
         if (!product) {
             return res.redirect('/');
@@ -70,6 +87,7 @@ exports.getEditProduct = (req, res, next) => {
             product: product
         });
     });
+    */
     
 };
 
@@ -82,10 +100,32 @@ exports.postEditProduct = (req, res, next) => {
     const newPrice = req.body.price;
     const newDescription = req.body.description;
     // create a new product instance
+    /*
     const newProduct = new Product(prodId, newTitle, newimageUrl, newPrice, newDescription);
 
     newProduct.save();
     res.redirect('/admin/products');
+    */
+
+    // using sequelize
+    Product.findByPk(prodId)
+        .then(product => {
+            // updata local variables
+            product.title = newTitle;
+            product.imageUrl = newimageUrl;
+            product.price = newPrice;
+            product.description = newDescription;
+            // save back to database
+            // if the product does not exist -> will create new one
+            // otherwise, update/overwrite the existing one
+            return product.save();
+        })
+        .then(result => {
+            console.log('UPDATED PRODUCT!');
+            res.redirect('/admin/products');
+        }) // handle any success response from the save promise
+        .catch(err => console.log(err));
+
 };
 
 
