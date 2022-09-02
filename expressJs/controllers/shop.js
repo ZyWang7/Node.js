@@ -67,6 +67,7 @@ exports.getProduct = (req, res, next) => {
     });
     */
 
+    /* fetch data using database --------------------------
     Product.fetchById(prodId)
         .then(([product]) => {
             res.render('shop/product-detail', {
@@ -76,7 +77,32 @@ exports.getProduct = (req, res, next) => {
             });
         })
         .catch(err => console.log(err));
+    ---------------------------------------------------- */
+
+    // fetch data using sequelize
+    Product.findByPk(prodId)
+        .then(product => {
+            res.render('shop/product-detail', {
+                product: product,
+                docTitle: product.title,
+                path: '/products'
+            });
+        })
+        .catch(err => console.log(err));
     
+    
+    // alternative way
+    /*
+    Product.findAll({ where: {id: prodId} })
+        .then(products => {
+            res.render('shop/product-detail', {
+                product: products[0],
+                docTitle: products[0].title,
+                path: '/products'
+            });
+        })
+        .catch(err => console.log(err));
+    */
 };
 
 
