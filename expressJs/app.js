@@ -44,6 +44,7 @@ app.set('views', 'views');
 
 const adminRoutes = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
+const { application } = require('express');
 
 // testing code -------------------------------------------
 /*
@@ -72,6 +73,24 @@ app.use(bodyParser.urlencoded({extended: false}));
 
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+// register a middleware to store the user in request
+// so that can use that from anywhere in the app
+// for a incoming request -> will execute this function
+// npm start never run this anonymous function
+// -> only reach this if we successfully  start server with app listen
+app.use((req, res, next) => {
+    User.findById(1)
+        .then(user => {
+            // user -> sequelize object with the value stored in the database
+            //      -> with all utility methods sequelize added
+            req.user = user;
+            next();
+        })
+        .catch(err => console.error(err));
+});
+
+
 // order does matter!
 app.use('/admin', adminRoutes);
 app.use(shopRoutes);
@@ -90,11 +109,30 @@ Product.belongsTo(User, {
 // define the inverse
 User.hasMany(Product);
 
-
+// npm start runs the code for the first time -> run sequelize -> not incoming request
+// incoming request only funneled through middleware
 // look at all the method you defined
-sequelize.sync({ force: true })        // define the table and the relation
+sequelize.sync()                    // define the table and the relation
+    // .sync({ force: true })       // overwrite the table
     .then(result => {
         // console.log(result);
+        // create a user
+        return User.findByPk(1);
+        
+    })
+    .then(user => {
+        if (!user) {
+            // if don't have user -> create a new one
+            return User.create({
+                name: 'Victor',
+                email: 'victor@gmail.com'
+            });
+        }
+        // returns a Promise object that is resolved with a given value
+        return Promise.resolve(user);
+    })
+    .then(user => {
+        // console.log(user);
         app.listen(3000);
     })
     .catch(err => console.log(err));
