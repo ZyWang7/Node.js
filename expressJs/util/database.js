@@ -27,7 +27,7 @@ module.exports = pool.promise();
 // -> use MySQL2 behind the scenes
 const Sequelize = require('sequelize');
 
-const sequelize = new Sequelize('node', 'root', 'W@qxx0102Hh-', {   
+const sequelize = new Sequelize('node', 'root', 'W@mysql0102', {   
                                     dialect: 'mysql',
                                     host: 'localhost'
                                 });
