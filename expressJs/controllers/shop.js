@@ -27,6 +27,7 @@ exports.getProducts = (req, res, next) => {
     });
     */
 
+    /* fetch data using database --------------------------
     Product.fetchAll()
         .then(([rows, fieldData]) => {
             res.render('shop/product-list', {
@@ -36,6 +37,20 @@ exports.getProducts = (req, res, next) => {
             });
         })
         .catch( err => console.error(err) );
+    ---------------------------------------------------- */
+    
+    
+    // fetch data using sequelize
+    Product.findAll()
+        .then(products => {
+            res.render('shop/product-list', {
+                prods: products,
+                docTitle: 'All Products',
+                path: '/products'
+            });
+        })
+        .catch(err => console.error(err));
+    
 };
 
 
@@ -76,6 +91,7 @@ exports.getIndex = (req, res, next) => {
     });
     ---------------------------------------------------- */
 
+    /* get info from database -----------------------------
     Product.fetchAll()
         .then(([rows, fieldData]) => {
             res.render('shop/index', {
@@ -85,6 +101,19 @@ exports.getIndex = (req, res, next) => {
             });
         })
         .catch( err => console.error(err) );
+    ---------------------------------------------------- */
+    
+
+    // fetch data using sequelize
+    Product.findAll()
+        .then(products => {
+            res.render('shop/index', {
+                prods: products, 
+                docTitle: 'Shop', 
+                path: '/'
+            });
+        })
+        .catch(err => console.error(err));
 };
 
 
