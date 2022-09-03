@@ -186,6 +186,7 @@ exports.getCart = (req, res, next) => {
 exports.postCart = (req, res, next) => {
     const prodId = req.body.productId;
     let fetchedCart;
+    let newQuantity = 1;
 
     /*
     Product.findById(prodId, (product) => {
@@ -206,22 +207,21 @@ exports.postCart = (req, res, next) => {
             if (products.length > 0) {
                 product = products[0];
             }
-            let newQuantity = 1;
+
             if (product) {
                 // increase quantity
-                // product.quantity = product.quantity + 1;
+                const oldQuantity = product.cartItem.quantity;
+                newQuantity = oldQuantity + 1;
+                return product;
             }
 
             // add new one
-            return Product
-                    .findByPk(prodId)       // find the genernal product data  
-                    .then(product => {      // product that needs to be added
-                        return fetchedCart.addProduct(product, {
-                            through: { quantity: newQuantity}   // extra field need to be set
-                        });     // will add to in-between table with its ID
-                    })
-                    .catch(err => console.error(err));
-            
+            return Product.findByPk(prodId)       // find the genernal product data  
+        })
+        .then(product => {
+            return fetchedCart.addProduct(product, {
+                    through: { quantity: newQuantity}
+                });
         })
         .then(() => {
             res.redirect('/cart');
