@@ -144,6 +144,7 @@ exports.getIndex = (req, res, next) => {
 
 
 exports.getCart = (req, res, next) => {
+    /* get info from file ---------------------------------
     Cart.getCart(cart => {
         Product.fetchAll(products => {
             const cartProducts = [];
@@ -153,14 +154,30 @@ exports.getCart = (req, res, next) => {
                     cartProducts.push({prodData: product, qty: cartProdData.quantity});
                 }
             }
-             res.render('shop/cart', { 
+            res.render('shop/cart', { 
                 path: '/cart', 
                 docTitle: 'Your Cart',
                 products: cartProducts
             });
         });
-       
     });
+    */
+
+    // fetch data using sequelize
+    // use cart to associated with wxisting user to get all the products in it
+    req.user.getCart()
+        .then(cart => {
+            return cart.getProducts()
+                        .then(products => {
+                            res.render('shop/cart', { 
+                                path: '/cart', 
+                                docTitle: 'Your Cart',
+                                products: products
+                            });
+                        })
+                        .catch(err => console.log(err));
+        })
+        .catch(err => console.log(err));
     
 };
 
