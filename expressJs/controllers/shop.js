@@ -1,5 +1,6 @@
 const Product = require('../models/product');
 const Cart = require('../models/cart');
+const CartItem = require('../models/cart-item');
 
 exports.getProducts = (req, res, next) => {
     // console.log('In another middleware!');
@@ -184,10 +185,49 @@ exports.getCart = (req, res, next) => {
 
 exports.postCart = (req, res, next) => {
     const prodId = req.body.productId;
+    let fetchedCart;
+
+    /*
     Product.findById(prodId, (product) => {
         Cart.addProduct(prodId, product.price);
     });
     res.redirect('/cart');
+    */
+
+    req.user
+        .getCart()
+        .then(cart => {
+            // check if product is already in cart
+            fetchedCart = cart;
+            return cart.getProducts({ where: {id: prodId} });
+        })
+        .then(products => {
+            let product;
+            if (products.length > 0) {
+                product = products[0];
+            }
+            let newQuantity = 1;
+            if (product) {
+                // increase quantity
+                // product.quantity = product.quantity + 1;
+            }
+
+            // add new one
+            return Product
+                    .findByPk(prodId)       // find the genernal product data  
+                    .then(product => {      // product that needs to be added
+                        return fetchedCart.addProduct(product, {
+                            through: { quantity: newQuantity}   // extra field need to be set
+                        });     // will add to in-between table with its ID
+                    })
+                    .catch(err => console.error(err));
+            
+        })
+        .then(() => {
+            res.redirect('/cart');
+        })
+        .catch(err => console.log(err));
+
 };
 
 
