@@ -63,9 +63,11 @@ exports.getEditProduct = (req, res, next) => {
     }
     const prodId = req.params.productId;
 
+    req.user.getProducts({where: {id: prodId}})
     // using sequelize
-    Product.findByPk(prodId)
-        .then(product => {
+    // Product.findByPk(prodId)
+        .then(products => {
+            const product = products[0];
             if (!product) {
                 return res.redirect('/');
             }
@@ -143,7 +145,9 @@ exports.getProducts = (req, res, next) => {
     });
     */
 
-    Product.findAll()
+    // using sequelize
+    req.user.getProducts()
+    // Product.findAll()
         .then(products => {
             res.render('admin/products', {
                 prods: products, 
