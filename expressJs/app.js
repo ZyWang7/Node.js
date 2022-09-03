@@ -9,6 +9,8 @@ const errorController = require('./controllers/error');
 const sequelize = require('./util/database');
 const Product = require('./models/product');
 const User = require('./models/user');
+const Cart = require('./models/cart');
+const CartItem = require('./models/cart-item');
 
 // create an express application -> valid request handler
 const app = express();
@@ -109,11 +111,24 @@ Product.belongsTo(User, {
 // define the inverse
 User.hasMany(Product);
 
+User.hasOne(Cart);
+Cart.belongsTo(User);       // will add a new field to cart -> userId
+
+Cart.belongsToMany(Product, { through: CartItem });
+Product.belongsToMany(Cart, { through: CartItem });       // Many-to-Many relationship
+// one cart can hold multiple products
+// a single product can be part of multiplr different carts
+// -> only works with intermediate table -> productId & CartId -> CartItem model
+
+// ------------------------------------------------------------------
+
+
 // npm start runs the code for the first time -> run sequelize -> not incoming request
 // incoming request only funneled through middleware
 // look at all the method you defined
-sequelize.sync()                    // define the table and the relation
-    // .sync({ force: true })       // overwrite the table
+sequelize
+    // .sync()                    // define the table and the relation
+    .sync({ force: true })       // overwrite the table
     .then(result => {
         // console.log(result);
         // create a user
