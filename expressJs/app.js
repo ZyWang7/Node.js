@@ -134,8 +134,8 @@ Product.belongsToMany(Order, { through: OrderItem });
 // incoming request only funneled through middleware
 // look at all the method you defined
 sequelize
-    // .sync()                    // define the table and the relation
-    .sync({ force: true })       // overwrite the table
+    .sync()                    // define the table and the relation
+    // .sync({ force: true })       // overwrite the table
     .then(result => {
         // console.log(result);
         // create a user

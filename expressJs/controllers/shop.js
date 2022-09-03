@@ -1,6 +1,6 @@
 const Product = require('../models/product');
-const Cart = require('../models/cart');
-const CartItem = require('../models/cart-item');
+// const Cart = require('../models/cart');
+// const CartItem = require('../models/cart-item');
 
 exports.getProducts = (req, res, next) => {
     // console.log('In another middleware!');
@@ -251,6 +251,31 @@ exports.postCartDeleteProd = (req, res, next) => {
         res.redirect('/cart');
     });
     */
+};
+
+
+exports.postOrder = (req, res, next) => {
+    // get all the cart items
+    req.user.getCart()
+        .then(cart => {
+            return cart.getProducts();
+        })
+        .then(products => {
+             return req.user.createOrder()
+                .then(order => {
+                    order.addProduct(
+                        products.map(product => {
+                            product.orderItem = { quantity: product.cartItem.quantity };
+                            return product;
+                        })
+                    );
+                })
+                .catch(err => console.log(err));
+        })
+        .then(result => {
+            res.redirect('/orders');
+        })
+        .catch(err => console.log(err));
 };
 
 
