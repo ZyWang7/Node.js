@@ -11,6 +11,8 @@ const Product = require('./models/product');
 const User = require('./models/user');
 const Cart = require('./models/cart');
 const CartItem = require('./models/cart-item');
+const Order = require('./models/order');
+const OrderItem = require('./models/order-item');
 
 // create an express application -> valid request handler
 const app = express();
@@ -120,6 +122,11 @@ Product.belongsToMany(Cart, { through: CartItem });       // Many-to-Many relati
 // a single product can be part of multiplr different carts
 // -> only works with intermediate table -> productId & CartId -> CartItem model
 
+Order.belongsTo(User);
+User.hasMany(Order);        // One-to-Many relationship
+Order.belongsToMany(Product, { through: OrderItem });
+Product.belongsToMany(Order, { through: OrderItem });
+
 // ------------------------------------------------------------------
 
 
@@ -127,8 +134,8 @@ Product.belongsToMany(Cart, { through: CartItem });       // Many-to-Many relati
 // incoming request only funneled through middleware
 // look at all the method you defined
 sequelize
-    .sync()                    // define the table and the relation
-    // .sync({ force: true })       // overwrite the table
+    // .sync()                    // define the table and the relation
+    .sync({ force: true })       // overwrite the table
     .then(result => {
         // console.log(result);
         // create a user
