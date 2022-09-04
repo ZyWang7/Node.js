@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 
 const errorController = require('./controllers/error');
 
-const mongoConnect = require('./util/database');
+const mongoConnect = require('./util/database').mongoConnect;
 
 /*
 const sequelize = require('./util/database');
@@ -50,7 +50,7 @@ app.set('view engine', 'ejs');
 app.set('views', 'views');
 
 
-// const adminRoutes = require('./routes/admin');
+const adminRoutes = require('./routes/admin');
 // const shopRoutes = require('./routes/shop');
 const { application } = require('express');
 
@@ -100,14 +100,13 @@ app.use((req, res, next) => {
 */
 
 // order does matter!
-// app.use('/admin', adminRoutes);
+app.use('/admin', adminRoutes);
 // app.use(shopRoutes);
 
 // handle 404 not found page
 app.use(errorController.get404);
 
-mongoConnect(client => {
-    console.log(client);
+mongoConnect(() => {
     app.listen(3000);
 });
 

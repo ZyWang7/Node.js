@@ -42,14 +42,30 @@ const mongodb = require('mongodb');
 
 const MongoClient = mongodb.MongoClient;
 
-const MongoConnect = (callback) => {
+let _db;
+
+const mongoConnect = (callback) => {
     // create a connection to mongodb
     MongoClient.connect('mongodb+srv://Victor:Wang%40mongodb7777@atlascluster.ikrzmow.mongodb.net/?retryWrites=true&w=majority')
+    
         .then(client => {
             console.log('Connected to mongodb');
-            callback(client);
+            _db = client.db('shop');        // connect to shop database
+                                            // if not exist -> mongodb will create
+            callback();
         })
-        .catch(err => console.error(err));
+        .catch(err => {
+            console.error(err);
+            throw err;
+        });
 };
 
-module.exports = MongoConnect;
+const getDb = () => {
+    if (_db) {
+        return _db;
+    }
+    throw 'No database found!';
+}
+
+exports.mongoConnect = mongoConnect;
+exports.getDb = getDb;
