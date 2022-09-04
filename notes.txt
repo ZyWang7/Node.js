@@ -176,7 +176,7 @@ Horizontal vs vertical Scaling
 
 -> NoSQL
     -> no data schemes -> no structure is required
-    -> no dara relations -> no/few connections
+    -> fewer data relations -> no/few connections
         -> can relate documents but don't have to
         -> and shouldn't do too much or queries become slow
     
@@ -193,6 +193,13 @@ Horizontal vs vertical Scaling
     -> horizontal and vertical scaling is possible
     -> great perfoemance for mass read & write requests
 
+    ->->-> MangoDB:
+            -> use json to store data in collections
+            -> bson? -> binary json -> transform behind the scenes before store in the file
+            -> relations
+                -> Nested/Embeded documents
+                -> References
+
 
 Sequelize -> third party package
     -> Object-Relational Mapping Library
@@ -208,11 +215,12 @@ Sequelize -> third party package
     
     
     -> offers the model to work with the database
-        -> allows us to define such models -> define which data make up a model
+        -> allows to define models & interact with the database -> define which data make up a model
                                            -> which data will be saved in the database
                                            -> e.g. User, Product
         -> then instantiate the model   -> e.g. const user =  User.build()
         -> then run queries on that     -> e.g. User.findAll()
         -> could associate the model to a product model     -> e.g. User.hasMany(Product)
+        -> easily set up relations and interact with related models through them
 
         -> https://sequelize.org/docs/v6/getting-started/
