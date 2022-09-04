@@ -22,7 +22,7 @@ const pool = mysql.createPool({
 module.exports = pool.promise();
 ------------------------------------------------------------------ */
 
-
+/*
 // connect sequelize to the database --------------------------------
 // -> use MySQL2 behind the scenes
 const Sequelize = require('sequelize');
@@ -34,3 +34,22 @@ const sequelize = new Sequelize('node', 'root', 'W@mysql0102', {
 // -> will set up a connection pool
 
 module.exports = sequelize;
+------------------------------------------------------------------ */
+
+
+// connect to mondodb -----------------------------------------------
+const mongodb = require('mongodb');
+
+const MongoClient = mongodb.MongoClient;
+
+const MongoConnect = (callback) => {
+    // create a connection to mongodb
+    MongoClient.connect('mongodb+srv://Victor:Wang%40mongodb7777@atlascluster.ikrzmow.mongodb.net/?retryWrites=true&w=majority')
+        .then(client => {
+            console.log('Connected to mongodb');
+            callback(client);
+        })
+        .catch(err => console.error(err));
+};
+
+module.exports = MongoConnect;

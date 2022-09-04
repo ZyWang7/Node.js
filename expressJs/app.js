@@ -6,6 +6,9 @@ const bodyParser = require('body-parser');
 
 const errorController = require('./controllers/error');
 
+const mongoConnect = require('./util/database');
+
+/*
 const sequelize = require('./util/database');
 const Product = require('./models/product');
 const User = require('./models/user');
@@ -13,6 +16,7 @@ const Cart = require('./models/cart');
 const CartItem = require('./models/cart-item');
 const Order = require('./models/order');
 const OrderItem = require('./models/order-item');
+*/
 
 // create an express application -> valid request handler
 const app = express();
@@ -46,8 +50,8 @@ app.set('view engine', 'ejs');
 app.set('views', 'views');
 
 
-const adminRoutes = require('./routes/admin');
-const shopRoutes = require('./routes/shop');
+// const adminRoutes = require('./routes/admin');
+// const shopRoutes = require('./routes/shop');
 const { application } = require('express');
 
 // testing code -------------------------------------------
@@ -77,7 +81,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-
+/* Using sequelize
 // register a middleware to store the user in request
 // so that can use that from anywhere in the app
 // for a incoming request -> will execute this function
@@ -93,16 +97,21 @@ app.use((req, res, next) => {
         })
         .catch(err => console.error(err));
 });
-
+*/
 
 // order does matter!
-app.use('/admin', adminRoutes);
-app.use(shopRoutes);
+// app.use('/admin', adminRoutes);
+// app.use(shopRoutes);
 
 // handle 404 not found page
 app.use(errorController.get404);
 
+mongoConnect(client => {
+    console.log(client);
+    app.listen(3000);
+});
 
+/*
 // define the relation ----------------------------------------------
 // a user create this product?
 Product.belongsTo(User, {
@@ -126,7 +135,6 @@ Order.belongsTo(User);
 User.hasMany(Order);        // One-to-Many relationship
 Order.belongsToMany(Product, { through: OrderItem });
 Product.belongsToMany(Order, { through: OrderItem });
-
 // ------------------------------------------------------------------
 
 
@@ -165,7 +173,7 @@ sequelize
 // const server = http.createServer(app);
 // server.listen(3000);
 // app.listen(3000);
-
+*/
 
 
 /*
