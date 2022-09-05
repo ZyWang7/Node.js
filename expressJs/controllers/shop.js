@@ -94,8 +94,12 @@ exports.getProduct = (req, res, next) => {
         .catch(err => console.log(err));
     ---------------------------------------------------- */
 
+
+    // using Mongodb
+    Product.fetchById(prodId)
+
     // fetch data using sequelize
-    Product.findByPk(prodId)
+    // Product.findByPk(prodId)
         .then(product => {
             res.render('shop/product-detail', {
                 product: product,
