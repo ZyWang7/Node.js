@@ -28,6 +28,7 @@ exports.postAddProduct = (req, res, next) => {
     const price = req.body.price;
     const description = req.body.description;
 
+    /*
     // create a new associate object -> automatically create a connected model
     req.user.createProduct({
         title: title,
@@ -36,6 +37,11 @@ exports.postAddProduct = (req, res, next) => {
         description: description,
         // userId: req.user.id
     })
+    */
+     
+    const product = new Product(title, price, description, imageUrl);
+
+    product.save()
     .then(result => {
         // console.log(result)
         console.log('Create Product');
