@@ -51,7 +51,7 @@ app.set('views', 'views');
 
 
 const adminRoutes = require('./routes/admin');
-// const shopRoutes = require('./routes/shop');
+const shopRoutes = require('./routes/shop');
 const { application } = require('express');
 
 // testing code -------------------------------------------
@@ -101,7 +101,7 @@ app.use((req, res, next) => {
 
 // order does matter!
 app.use('/admin', adminRoutes);
-// app.use(shopRoutes);
+app.use(shopRoutes);
 
 // handle 404 not found page
 app.use(errorController.get404);

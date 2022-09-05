@@ -40,7 +40,7 @@ exports.getProducts = (req, res, next) => {
         .catch( err => console.error(err) );
     ---------------------------------------------------- */
     
-    
+    /*
     // fetch data using sequelize
     Product.findAll()
         .then(products => {
@@ -51,6 +51,20 @@ exports.getProducts = (req, res, next) => {
             });
         })
         .catch(err => console.error(err));
+    */
+
+
+    // using Mongodb
+    Product.fetchAll()
+        .then(products => {
+            res.render('shop/product-list', {
+                prods: products,
+                docTitle: 'All Products',
+                path: '/products'
+            });
+        })
+        .catch(err => console.error(err));
+
     
 };
 
@@ -132,7 +146,7 @@ exports.getIndex = (req, res, next) => {
     
 
     // fetch data using sequelize
-    Product.findAll()
+    Product.fetchAll()
         .then(products => {
             res.render('shop/index', {
                 prods: products, 
