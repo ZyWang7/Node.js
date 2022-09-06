@@ -278,6 +278,7 @@ exports.postCart = (req, res, next) => {
 
 exports.postCartDeleteProd = (req, res, next) => {
     const prodId = req.body.productId;
+    /*
     req.user.getCart()
         .then(cart => {
             return cart.getProducts({ where: {id: prodId} });
@@ -290,6 +291,16 @@ exports.postCartDeleteProd = (req, res, next) => {
             res.redirect('/cart');
         })
         .catch(err => console.log(err));
+    */
+
+    // using Mongodb
+    req.user.deleteItemFromCart(prodId)
+        .then(result => {
+            res.redirect('/cart');
+        })
+        .catch(err => console.log(err));
+
+    
     /*
     Product.findById(prodId, product => {
         Cart.deleteProduct(prodId, product.price);
