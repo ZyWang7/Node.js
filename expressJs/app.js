@@ -7,6 +7,7 @@ const bodyParser = require('body-parser');
 const errorController = require('./controllers/error');
 
 const mongoConnect = require('./util/database').mongoConnect;
+const User = require('./models/user');
 
 /*
 const sequelize = require('./util/database');
@@ -98,6 +99,18 @@ app.use((req, res, next) => {
         .catch(err => console.error(err));
 });
 */
+
+
+// using Mongodb
+app.use((req, res, next) => {
+    User.findById('63175099d9580458d18bb13c')
+        .then(user => {
+            req.user = user;
+            next();
+        })
+        .catch(err => console.error(err));
+});
+
 
 // order does matter!
 app.use('/admin', adminRoutes);
