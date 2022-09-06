@@ -184,6 +184,7 @@ exports.getCart = (req, res, next) => {
 
     // fetch data using sequelize
     // use cart to associated with wxisting user to get all the products in it
+    /*
     req.user.getCart()
         .then(cart => {
             return cart.getProducts()
@@ -195,6 +196,18 @@ exports.getCart = (req, res, next) => {
                             });
                         })
                         .catch(err => console.log(err));
+        })
+        .catch(err => console.log(err));
+    */
+
+    // using Mongodb
+    req.user.getCart()
+        .then(products => {
+            res.render('shop/cart', { 
+                path: '/cart', 
+                docTitle: 'Your Cart',
+                products: products
+            });
         })
         .catch(err => console.log(err));
     
@@ -211,6 +224,7 @@ exports.postCart = (req, res, next) => {
         })
         .then(result => {
             console.log(result);
+            res.redirect('/cart');
         })
         .catch(err => console.log(err));
 
