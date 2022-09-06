@@ -179,19 +179,22 @@ exports.getProducts = (req, res, next) => {
 };
 
 
-// exports.postDeleteProduct = (req, res, next) => {
-//     const prodId = req.body.productId;
-//     // Product.deleteById(prodId);
+exports.postDeleteProduct = (req, res, next) => {
+    const prodId = req.body.productId;
+    // Product.deleteById(prodId);
 
-//     // delete the product using sequelize
-//     // Product.destroy({where:});
-//     Product.findByPk(prodId)
-//         .then(product => {
-//             return product.destroy();
-//         })
-//         .then(ersult => {
-//             console.log('PRODUCT DELETED');
-//             res.redirect('/admin/products/');
-//         })
-//         .catch(err => console.error(err));
-// };
+    // delete the product using sequelize
+    // Product.destroy({where:});
+    // Product.findByPk(prodId)
+        // .then(product => {
+        //     return product.destroy();
+        // })
+
+    // using Mongodb
+    Product.deleteById(prodId)
+        .then(() => {
+            console.log('PRODUCT DELETED');
+            res.redirect('/admin/products/');
+        })
+        .catch(err => console.error(err));
+};
