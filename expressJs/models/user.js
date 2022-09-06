@@ -108,16 +108,30 @@ class User {
 
     addOrder() {
         const db = getDb();
-        db.collection('orders')
-            .insertOne(this.cart)
-            .then(result => {
-                this.cart = { items: [] };      // empty the cart
-                // clear in the database
-                return db.collection('users').updateOne(
-                    { _id: new ObjectId(this._id) },
-                    { $set: { cart: {items: []} } }
-                );
-            });
+        return this.getCart().then( products => {     // get an array of products
+            const order = {
+                items: products,
+                user: {
+                    _id: new ObjectId(this._id),
+                    name: this.name
+                }
+            };
+            // insert to 'orders' collection
+            return db.collection('orders').insertOne(order);
+        })
+        .then(result => {
+            this.cart = { items: [] };      // empty the cart
+            // clear in the database
+            return db.collection('users').updateOne(
+                { _id: new ObjectId(this._id) },
+                { $set: { cart: {items: []} } }
+            );
+        });
+    }
+
+    getOrders() {
+        const db = getDb();
+        // return db.collection('orders').find();
     }
 
     static findById(userId) {
