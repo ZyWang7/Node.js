@@ -97,3 +97,5 @@ const Cart = sequelize.define('cart', {
 });
 
 module.exports = Cart;
+
+// no need when using Mongodb

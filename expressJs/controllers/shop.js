@@ -203,8 +203,19 @@ exports.getCart = (req, res, next) => {
 
 exports.postCart = (req, res, next) => {
     const prodId = req.body.productId;
-    let fetchedCart;
-    let newQuantity = 1;
+
+    // using Mongodb
+    Product.fetchById(prodId)
+        .then(product => {
+            return req.user.addToCart(product);
+        })
+        .then(result => {
+            console.log(result);
+        })
+        .catch(err => console.log(err));
+
+    // let fetchedCart;
+    // let newQuantity = 1;
 
     /*
     Product.findById(prodId, (product) => {
@@ -213,6 +224,7 @@ exports.postCart = (req, res, next) => {
     res.redirect('/cart');
     */
 
+    /*
     req.user
         .getCart()
         .then(cart => {
@@ -245,6 +257,7 @@ exports.postCart = (req, res, next) => {
             res.redirect('/cart');
         })
         .catch(err => console.log(err));
+        */
 
 };
 

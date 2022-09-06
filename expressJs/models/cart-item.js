@@ -13,3 +13,5 @@ const CartItem = sequelize.define('cartItem', {
 });
 
 module.exports = CartItem;
+
+// no need when using Mongodb
