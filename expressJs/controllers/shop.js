@@ -313,6 +313,7 @@ exports.postCartDeleteProd = (req, res, next) => {
 exports.postOrder = (req, res, next) => {
     let fetchedCart;
     // get all the cart items
+    /*
     req.user.getCart()
         .then(cart => {
             fetchedCart = cart;
@@ -337,6 +338,15 @@ exports.postOrder = (req, res, next) => {
             res.redirect('/orders');
         })
         .catch(err => console.log(err));
+    */
+
+    // using Mongodb
+    req.user.addOrder()
+        .then(() => {
+            res.redirect('/orders');
+        })
+        .catch(err => console.log(err));
+
 };
 
 
