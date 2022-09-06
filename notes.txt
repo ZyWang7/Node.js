@@ -197,8 +197,16 @@ Horizontal vs vertical Scaling
             -> use json to store data in collections
             -> bson? -> binary json -> transform behind the scenes before store in the file
             -> relations
-                -> Nested/Embeded documents
+                -> Nested/Embeded documents/data
                 -> References
+
+            -> official docs: -> operations + configurations/operators
+                -> https://mongodb.github.io/node-mongodb-native/4.9/
+                -> https://www.mongodb.com/docs/drivers/node/current/fundamentals/crud/
+
+            -> use the official drivers
+            -> commands -> e.g. insertOne(), find(), updateOne(), deleteOne() make CRUD-operations very simple
+            -> all operations -> promise-based -> easily chain them for more complex flows
 
 
 Sequelize -> third party package
