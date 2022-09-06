@@ -42,15 +42,15 @@ exports.postAddProduct = (req, res, next) => {
     })
     */
      
-    const product = new Product(title, price, description, imageUrl);
+    const product = new Product(title, price, description, imageUrl, null, req.user._id);
 
     product.save()
-    .then(result => {
-        // console.log(result)
-        console.log('Create Product');
-        res.redirect('/admin/products');
-    })
-    .catch(err => console.error(err));
+        .then(result => {
+            // console.log(result)
+            console.log('Create Product');
+            res.redirect('/admin/products');
+        })
+        .catch(err => console.error(err));
 
     /*
     const product = new Product(null, title, imageUrl, price, description);
